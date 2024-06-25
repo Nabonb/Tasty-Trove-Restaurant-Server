@@ -110,6 +110,13 @@ async function run() {
       
     })
 
+    app.delete('/user/:email',async(req,res)=>{
+      const email = req.params.email
+      const query ={email:email}
+      const result = await userCollection.deleteOne(query)
+      res.send(result)
+    })
+
     app.get('/menu',async(req,res)=>{
         const result = await menuCollection.find().toArray();
         res.send(result);
